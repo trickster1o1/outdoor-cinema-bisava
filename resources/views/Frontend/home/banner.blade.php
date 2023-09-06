@@ -1,90 +1,29 @@
- <!--Main Slider Start-->
- <section class="main-slider">
-    <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
-    "effect": "fade",
-    "lazy" : true,
-    "preloadImages": false,
-    "pagination": {
-    "el": "#main-slider-pagination",
-    "type": "bullets",
-    "clickable": true
-    },
-    "navigation": {
-    "nextEl": "#main-slider__swiper-button-next",
-    "prevEl": "#main-slider__swiper-button-prev"
-    },
-    "autoplay": {
-    "delay": 5000
-    }}'>
-        <div class="swiper-wrapper extra-wrap">
-            @if (isset($banners) && count($banners) != 0)
-
-            @foreach ($data as $banner)
-            <div class="swiper-slide">
-                <div class="image-layer swiper-lazy" data-background="{{$banner->image}}">
-                    <div class="swiper-lazy-preloader"></div>
-                </div>
-                <!-- /.image-layer -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-7">
-                            <div class="main-slider__content">
-                                <h2>{!! $banner->title !!}</h2>
-                                @if ($banner->tag_line)<p>{{$banner->tag_line}}</p>@endif                            
-                                @if(strlen(trim($banner->video)))
-                                <a href="{{$banner->video}}" class="video-popup">
-                                    <div class="tab-content__video-icon">
-                                        <span class="fa fa-play"></span>
-                                        <i class="ripple"></i>
-                                    </div>
-                                </a>
-                                <br/>
-                                @endif                                
-                                @if ($banner->primary_button_title)
-                                    <a href="{{$banner->primary_button_link}}" class="thm-btn" target = {{str_contains($banner->primary_button_link, 'http') ? '_blank' : '_self' }} >{{$banner->primary_button_title}} </a>
-                                    <div class="main-slider-shape-1"><img
-                                            data-src="Frontend/assets/images/shapes/main-slider-shape-1.png" class="float-bob-x lazy"
-                                            alt="{!! strip_tags($banner->title) !!}" title="{!! strip_tags($banner->title) !!}">
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-            @endforeach            
-            @else                
-             <div class="swiper-slide"  style="height:910px">
-                <div class="image-layer"
-                    style="background-image: url(/uploads/defaults/home_slider.png);">
-                </div>
-                <!-- /.image-layer -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-7">
-                            <div class="main-slider__content">
-                                <h2>Lend the <br> Helping <span>Hand</span> <br> Get Involved.</h2>
-                                <p>We are here to support you every step of the way</p>                                
-                            </div>
-                            <a href="/donate-now" class="thm-btn" target="_self">Donate Now </a>
-                            <div class="main-slider-shape-1"><img data-src="Frontend/assets/images/shapes/main-slider-shape-1.png" class="float-bob-x" alt="Let’s Make a Difference  in the Lives of Others" title="Let’s Make a Difference  in the Lives of Others">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="banner-cont">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-image: url('https://i.redd.it/8yonn7m4bfk31.jpg')">
+                s
+                {{-- <img src="https://i.ytimg.com/vi/V3tEPolMPKQ/maxresdefault.jpg" class="d-block w-100" alt="..."> --}}
+                
             </div>
-            @endif
-        </div>
-        <!-- If we need navigation buttons -->
-        <div class="swiper-pagination" id="main-slider-pagination"></div>
-        <div class="main-slider__nav">
-            <div class="swiper-button-prev" id="main-slider__swiper-button-next">
-                <i class="fa fa-angle-right angle-left"></i>
+             <div class="carousel-item" style="background-image: url('https://newsroompost.com/wp-content/uploads/2023/07/jawan-2.jpg')">
+                {{-- <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/0b54058044693.560b653bcf7e6.jpg" class="d-block w-100" alt="..."> --}}
+                {{-- As --}}
             </div>
-            <div class="swiper-button-next" id="main-slider__swiper-button-prev">
-                <i class="fa fa-angle-right"></i>
+            <div class="carousel-item" style="background-image: url('https://www.heavenofhorror.com/wp-content/uploads/2023/06/the-nun-2-horror-movie-1280x593.jpg')">
+                {{-- <img src="..." class="d-block w-100" alt="..."> --}}
+                {{-- Ass --}}
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-</section>
-<!--Main Slider End-->
+</div>
