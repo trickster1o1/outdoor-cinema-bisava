@@ -47,7 +47,7 @@
 <body>
     <div class="nav-cont">
         <div class="nav-logo">
-            <img src="/{{$siteSetting->primary_logo}}" alt="LOGO">
+            <img src="/{{$siteSetting ? $siteSetting->primary_logo : 'nothing'}}" alt="LOGO">
         </div>
 
         <ul>
