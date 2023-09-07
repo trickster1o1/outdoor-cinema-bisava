@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\HomeSettingController;
 use App\Http\Controllers\Admin\InternalLinksController;
 use App\Http\Controllers\Admin\IntroductionController;
+use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\PaymentController;
@@ -91,6 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
         'admin/bank' => BankDetailController::class,
         'admin/paymentsetting' => PaymentSettingController::class,
         'admin/smtp' => SmtpController::class,
+        'admin/movies' => MovieController::class,
     ]);
 
 // Edit profile route
@@ -133,6 +135,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/blog_data', [BlogsController::class, 'blog_data']);
     Route::get('/page_data', [PagesController::class, 'page_data']);
     Route::get('/banner_data', [BannerController::class, 'banner_data']);
+    Route::get('/movie_data', [MovieController::class, 'movie_data']);
     Route::get('/review_data', [ReviewController::class, 'review_data']);
     Route::get('/user_data', [UserController::class, 'user_data']);
     Route::get('/internal_link_data', [InternalLinksController::class, 'internal_link_data']);
