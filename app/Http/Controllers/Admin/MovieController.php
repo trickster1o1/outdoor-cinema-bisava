@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\Controller;
+use App\Http\Requests\Admin\MovieRequest;
 use App\Models\Admin\Movie;
 use Illuminate\Http\Request;
+use Toastr;
 
 class MovieController extends Controller
 {
@@ -120,9 +122,17 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MovieRequest $request)
     {
         //
+        authorize($this->menuCode, 'CREATE');
+        $validated = $request->validated();
+        $data = Movie::create($validated);
+        set_order_by($data->id, $this->table);
+        
+        $this->modified_by('create',$data);
+        Toastr::success('Movie Created Successfully', 'Sucess');
+        return redirect()->route('movies.index');
     }
 
     /**

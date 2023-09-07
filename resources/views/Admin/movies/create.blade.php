@@ -41,23 +41,26 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="tag_line">Tag Line</label>
-                                        <input type="text" class="form-control @error('tag_line') is-invalid @enderror"
-                                            id="tag_line" name="tag_line" placeholder="Tag Line"
-                                            value="{{ old('tag_line') }}">
-                                        @error('tag_line')
+                                        <label for="price">Price *</label>
+                                        <input type="text" class="form-control @error('price') is-invalid @enderror"
+                                            id="price" name="price" placeholder="Rs..."
+                                            value="{{ old('price') }}">
+                                        @error('price')
                                             <span class="invalid-feedback"> {{ $message }} </span>
                                         @enderror
                                     </div>
+                                    
+                                    @include('inputs.date',[$data=['date','Enter Date']])
+                                    @include('inputs.time',[$data=['time','Enter Time']])
 
                                     <div class="form-group col-md-6">
-                                        <label for="image">Image *(1894x910px)</label>
+                                        <label for="thumb">Image *(1894x910px)</label>
                                         <div class="input-group md-3">
-                                            <input type="text" class="form-control @error('image') is-invalid @enderror"
-                                                id="image" name="image" placeholder="Image" value="{{ old('image') }}">
-                                            <button class="btn btn-primary popup_selector" data-inputid="image"
+                                            <input type="text" class="form-control @error('thumb') is-invalid @enderror"
+                                                id="thumb" name="thumb" placeholder="Image" value="{{ old('thumb') }}">
+                                            <button class="btn btn-primary popup_selector" data-inputid="thumb"
                                                 type="button">
-                                                Select Image
+                                                Select thumb
                                             </button>
                                         </div>
                                         @error('image')
@@ -83,6 +86,9 @@
                                             </option>
                                             <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>
                                                 Inactive
+                                            </option>
+                                            <option value="soon" {{ old('status') == 'soon' ? 'selected' : '' }}>
+                                                Soon
                                             </option>
                                         </select>
                                         @error('status')
