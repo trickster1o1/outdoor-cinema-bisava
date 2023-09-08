@@ -18,8 +18,10 @@ class CreateMoviesTable extends Migration
             $table->string('title')->nullable();
             $table->string('time')->nullable();
             $table->string('thumb')->nullable();
+            $table->text('description')->nullable();
             $table->string('date')->nullable();
             $table->string('price')->nullable();
+            $table->string('order_by')->nullable();
             table_fields($table);
             $table->timestamps();
         });

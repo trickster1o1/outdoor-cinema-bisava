@@ -13,7 +13,7 @@ class Movie extends Model
     protected $table = 'movies';
 
     protected $fillable = [
-        'title', 'thumb', 'price', 'status', 'price', 'date', 'created_by', 'updated_by', 'time',
+        'title', 'thumb', 'price','description' ,'status', 'price', 'date', 'created_by', 'updated_by', 'time',
     ];
 
     
@@ -22,7 +22,7 @@ class Movie extends Model
         $query = Movie::where('status', '!=', 'deleted');
         if (isset($filter['filter_search_text']) && strlen(trim($filter['filter_search_text']))) {
             $query->where('title', 'like', '%' . $filter['filter_search_text'] . '%');
-            $query->where('price', 'like', '%' . $filter['filter_search_text'] . '%');
+            $query->orWhere('price', 'like', '%' . $filter['filter_search_text'] . '%');
         }
         $total_data = $query->count();
         return $total_data;
@@ -34,7 +34,7 @@ class Movie extends Model
         //filter conditions begins
         if (isset($filter['filter_search_text']) && strlen(trim($filter['filter_search_text']))) {
             $query->where('title', 'like', '%' . $filter['filter_search_text'] . '%');
-            $query->where('price', 'like', '%' . $filter['filter_search_text'] . '%');
+            $query->orWhere('price', 'like', '%' . $filter['filter_search_text'] . '%');
         }
         //filter condition ends
         $movies = $query->orderby($sort['field'], $sort['position'])->offset($pagination['offset'])->limit($pagination['limit'])->get();

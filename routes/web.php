@@ -168,6 +168,7 @@ Route::get('/service/related/{id}', [PageController::class, 'relatedService']);
 
 // thematic areas
 Route::get('/area', [HomeController::class, 'thematicView']);
+Route::get('/movie/{link}', [PageController::class, 'getMovie']);
 
 //home route
 Route::get('/', [HomeController::class, 'index']);

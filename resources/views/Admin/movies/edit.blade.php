@@ -24,8 +24,9 @@
                                 Details</button>
                         </li>
                     </ul>
-                    <form class="forms-sample" action="{{ route('movies.store') }}" method="POST">
+                    <form class="forms-sample" action="{{ route('movies.update', $movie) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="tab-content col-md-12" id="myTabContent">
                             <div class="tab-pane fade show active container" id="home" role="tabpanel"
                                 aria-labelledby="home-tab">
@@ -35,7 +36,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="title">Title *</label>
                                         <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                            id="title" name="title" placeholder="Title" value="{{ old('title') }}">
+                                            id="title" name="title" placeholder="Title" value="{{ old('title',$movie->title) }}">
                                         @error('title')
                                             <span class=" invalid-feedback"> {{ $message }} </span>
                                         @enderror
@@ -44,20 +45,20 @@
                                         <label for="price">Price *</label>
                                         <input type="text" class="form-control @error('price') is-invalid @enderror"
                                             id="price" name="price" placeholder="Rs..."
-                                            value="{{ old('price') }}">
+                                            value="{{ old('price',$movie->price) }}">
                                         @error('price')
                                             <span class="invalid-feedback"> {{ $message }} </span>
                                         @enderror
                                     </div>
                                     
-                                    @include('inputs.date',[$data=['date','Enter Date']])
-                                    @include('inputs.time',[$data=['time','Enter Time']])
+                                    @include('inputs.date',[$data=['date','Enter Date',$movie->date]])
+                                    @include('inputs.time',[$data=['time','Enter Time',$movie->time]])
 
                                     <div class="form-group col-md-6">
                                         <label for="thumb">Image *(1894x910px)</label>
                                         <div class="input-group md-3">
                                             <input type="text" class="form-control @error('thumb') is-invalid @enderror"
-                                                id="thumb" name="thumb" placeholder="Image" value="{{ old('thumb') }}">
+                                                id="thumb" name="thumb" placeholder="Image" value="{{ old('thumb',$movie->thumb) }}">
                                             <button class="btn btn-primary popup_selector" data-inputid="thumb"
                                                 type="button">
                                                 Select thumb
@@ -81,13 +82,13 @@
                                         <label for="status">Status</label>
                                         <select class="form-control @error('status') is-invalid @enderror" id="status"
                                             name="status">
-                                            <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>
+                                            <option value="active" {{ old('status',$movie->status) == 'active' ? 'selected' : '' }}>
                                                 Active
                                             </option>
-                                            <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>
+                                            <option value="inactive" {{ old('status',$movie->status) == 'inactive' ? 'selected' : '' }}>
                                                 Inactive
                                             </option>
-                                            <option value="soon" {{ old('status') == 'soon' ? 'selected' : '' }}>
+                                            <option value="soon" {{ old('status',$movie->status) == 'soon' ? 'selected' : '' }}>
                                                 Soon
                                             </option>
                                         </select>
@@ -95,12 +96,11 @@
                                             <span class="invalid-feedback"> {{ $message }} </span>
                                         @enderror
                                     </div>
-
                                     
                                     <div class="form-group col-md-6">
                                         <label for="descprition">Descprition</label>
                                         <textarea class="form-control @error('descptrion') is-invalid @enderror" id="summary-ckeditor" name="description"
-                                            placeholder="Descprition"><?php echo old('description'); ?></textarea>
+                                            placeholder="Descprition"><?php echo old('description',$movie->description); ?></textarea>
                                         @error('description')
                                             <span class="invalid-feedback"> {{ $message }} </span>
                                         @enderror
@@ -119,7 +119,6 @@
         </div>
     </div>
 @endsection
-
 @section('script')
     <script>
         window.onload = function() {

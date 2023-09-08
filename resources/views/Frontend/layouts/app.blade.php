@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--SEO DETAIL BEGINS-->
-    <title>{{ isset($meta_title) ? $meta_title : 'SEC Nepal' }}</title>
+    <title>{{ isset($meta_title) ? $meta_title : 'Outdoor Cinema' }}</title>
     <meta name="description" content="{{ isset($meta_description) ? $meta_description : '' }}">
     <meta property="og:site_name" content="{{ $siteSetting->title }}" />
     <meta property="og:image" content="{{ isset($fb_image) ? $fb_image : '' }}" />
@@ -47,7 +47,9 @@
 <body>
     <div class="nav-cont">
         <div class="nav-logo">
-            <img src="/{{$siteSetting ? $siteSetting->primary_logo : 'nothing'}}" alt="LOGO">
+            <a href="/">
+                <img src="/{{$siteSetting ? $siteSetting->primary_logo : 'nothing'}}" alt="LOGO">
+            </a>
         </div>
 
         <ul>
@@ -67,7 +69,9 @@
 
     <div class="custom-cont">
         <div class="footer-cont">
-            <div>LOGO</div>
+            <div class="nav-logo">
+                <img src="/{{$siteSetting ? $siteSetting->primary_logo : 'nothing'}}" alt="LOGO">
+            </div>
             <ul class="social-cont">
                 <li><i class="fa fa-facebook-f"></i></li>
                 <li><i class="fa fa-instagram"></i></li>

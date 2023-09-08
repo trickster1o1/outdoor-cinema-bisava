@@ -3,13 +3,19 @@
         <h4 class="custom-head">
             {{ $head }}
         </h4>
-        <span>{{count($mvs)}} Movies</span>
+        <span>{{ count($mvs) }} Movies</span>
     </section>
     @foreach ($mvs as $movie)
-        <div class="col-md-4 col-sm-12 col-xl-2" title="{{$movie->title}}">
-            <div>
-                <img src="{{str_starts_with($movie->thumb, 'http') ? $movie->thumb : '/'.$movie->thumb}}"
-                    alt="-" class="i-fit">
+        <div class="col-md-4 col-sm-12 col-xl-2" title="{{ $movie->title }}">
+            <div class="movie-box">
+                <div class="overlay">
+                    <a href="/movie/{{$movie->id}}">
+                        {{$movie->title}}
+                    </a>
+                </div>
+                <img src="{{ str_starts_with($movie->thumb, 'http') ? $movie->thumb : '/' . $movie->thumb }}" alt="-"
+                    class="i-fit">
+
             </div>
         </div>
     @endforeach

@@ -58,6 +58,7 @@ class MovieController extends Controller
             foreach ($movies as $key => $movie) :
                 $action = '';
                 $records["data"][$key][] = strip_tags($movie->title);
+                $records["data"][$key][] = 'Rs.'.$movie->price;
 
 
                 $records["data"][$key][] = '<input data-table="' . $this->table . '" data-url="' . url('admin/dashboard/update_order/' . $movie->id) . '" type="number" value="' . $movie->order_by . '" class="text-right update_order">';
@@ -152,9 +153,11 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Movie $movie)
     {
         //
+        authorize($this->menuCode, 'UPDATE');
+        return view('Admin.movies.edit', compact(['movie']));
     }
 
     /**
@@ -164,9 +167,16 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MovieRequest $request, $id)
     {
         //
+        authorize($this->menuCode, 'UPDATE');
+        $validated = $request->validated();
+        $movie = Movie::where('id',$id)->where('status','!=','deleted')->first();
+        $movie->update($validated);
+        $this->modified_by('update',$movie);
+        Toastr::success('Movie Updated Sucessfully', 'Sucess');
+        return redirect()->route('movies.index');
     }
 
     /**
@@ -178,5 +188,16 @@ class MovieController extends Controller
     public function destroy($id)
     {
         //
+        
+        if (authorize($this->menuCode, 'DESTROY', false)) {
+            $movie = Movie::where('id', '=', $id);
+            $movie->update(['status' => 'deleted']);
+            $data['type']       = 'success';
+            $data['message']    = 'Record Deleted Sucessfully!!!';
+        } else {
+            $data['type']       = 'error';
+            $data['message']    = 'Invalid Request!';
+        }
+        return $data;
     }
 }

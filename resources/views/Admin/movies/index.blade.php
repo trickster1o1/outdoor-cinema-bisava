@@ -35,6 +35,7 @@
                     <tr>
                         <!--data-column is field name that needs to be sort and data-filter check sorting is enabled or not-->
                         <th scope="col" width="30%" data-column="title" data-filter="1">Title</th>
+                        <th scope="col" width="1%" data-column="price" data-filter="1">Price</th>
                         <th scope="col" width="1%" data-column="order_by" data-filter="1">Sequence</th>
                         <th scope="col" data-column="status" data-filter="1" width="5%">Status</th>
                         @if (authorize($menucode, 'UPDATE', false) || authorize($menucode, 'DELETE', false))

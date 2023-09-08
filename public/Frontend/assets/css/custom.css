@@ -33,7 +33,10 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-}.nav-logo > img {
+}.nav-logo > a {
+    height: 100%;
+    display: block;
+}.nav-logo > a > img {
     height: 90%;
     width: auto;
 } .nav-cont li {
@@ -138,12 +141,29 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}.movie-box {
+    position: relative;
+} .movie-box > .overlay {
+    color: white;
+    position: absolute;
+    background-color: rgba(0,0,0,.4);
+    opacity: 0;
+    transition: opacity .4s ease-in-out;
+}.movie-box > .overlay > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-decoration: none;
+}.movie-box:hover .overlay {
+    opacity: 1;
 }
 
 /* ============================== */
 
 /* ====== footer cont ========== */
-
 .footer-cont {
     border-top: 1px solid rgba(0,0,0,.4);
     display: flex;
@@ -151,6 +171,8 @@
     justify-content: center;
     align-items: center;
     padding-top: 2em;
+} .footer-cont > .nav-logo {
+    height: 100px;
 } .footer-cont ul li {
     display: inline-block;    
     color: #828385;
@@ -165,4 +187,39 @@
     font-size: 1.5rem;
 }
 
+/* ============================== */
+
+/* ======= movie detail ========== */
+.movie-detail {
+    padding-top: 1em;
+    width: 100%;
+}
+.movie-detail > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} .movie-detail small {
+    display: block;
+    color: #00aad3;
+    font-weight: bold;
+} .movie-detail .movie-time {
+    font-size: 9pt;
+    display: block;
+    background-color: #414042;
+    color: white;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 5px;
+} .movie-detail p {
+    width: 100%;
+    font-size: 10pt;
+} .movie-desc {
+    width: 100%;
+    padding: 1em;
+} .movie-booking {
+    background-color: #414042;
+    color: white;
+    padding: 1em;
+    min-height: 100px;
+}
 /* ============================== */
