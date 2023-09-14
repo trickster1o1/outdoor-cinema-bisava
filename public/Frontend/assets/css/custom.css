@@ -219,7 +219,38 @@
 } .movie-booking {
     background-color: #414042;
     color: white;
-    padding: 1em;
-    min-height: 100px;
+    border-radius: 15px 0;
+    padding: 1em 3em;
+    min-height: 50vh;
+} .movie-booking > div > div {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+}  .movie-booking > div:nth-child(1) {    
+    display: flex;
+    justify-content: space-around;
+    gap: 2em;
+}.book-now {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: flex-end;
+}.custom-btn {
+    outline: none;
+    background-color: rgba(255,0,0,0);
+    width: 10em;
+    height: 2.5em;
+    color: white;
+    border: 1px solid rgba(255,255,255,1);
+    width: 100%;
+    font-size: 20px;
+    transition: all .4s ease-in-out;
+} .custom-btn:hover {
+    background-color: rgba(255,0,0,1);
+    border:1px solid rgba(255,255,255,0);
+
 }
 /* ============================== */
