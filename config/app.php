@@ -184,6 +184,7 @@ return [
         Barryvdh\Elfinder\ElfinderServiceProvider::class,
 
         Vrkansagara\LaraOutPress\ServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
 
     ],
@@ -244,6 +245,7 @@ return [
 
         //social media share button
         'Share' => Jorenvh\Share\ShareFacade::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ],
 
 ];

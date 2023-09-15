@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\IntroductionController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\NoticeController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PopupController;
@@ -43,6 +44,7 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\VolunteerController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\Frontend\PaymentController as FrontendPaymentController;
 use App\Models\Admin\InternalLinks;
 use App\Models\Admin\PaymentSettings;
 use App\Models\Admin\Program;
@@ -97,6 +99,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 // Edit profile route
 
+    Route::delete('/admin/orders/{id}/destroy', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::get('/admin/orders', [OrderController::class, 'index'])->name('orders.index');
+
+
     Route::get('/admin/users/{id}/profile/edit', [UserController::class, 'editProfile'])->name('users.eprof');
     Route::put('/admin/users/{id}/profile/update', [UserController::class, 'updProfile'])->name('users.profile');
     Route::get("/admin/users/{id}/password/change", [UserController::class, 'editPwd'])->name('users.pwd');
@@ -136,6 +142,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/page_data', [PagesController::class, 'page_data']);
     Route::get('/banner_data', [BannerController::class, 'banner_data']);
     Route::get('/movie_data', [MovieController::class, 'movie_data']);
+    Route::get('/order_data', [OrderController::class, 'order_data']);
     Route::get('/review_data', [ReviewController::class, 'review_data']);
     Route::get('/user_data', [UserController::class, 'user_data']);
     Route::get('/internal_link_data', [InternalLinksController::class, 'internal_link_data']);
@@ -174,6 +181,12 @@ Route::get('/movie/{link}', [PageController::class, 'getMovie']);
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [PageController::class, 'getAbout']);
 Route::get('/introduction', [PageController::class, 'getAbout']);
+
+// checkouts
+Route::post('/checkout', [FrontendPaymentController::class, 'checkout'])->name('checkout.payment');
+Route::get('/checkout/validate/{movie}', [FrontendPaymentController::class, 'validatePay'])->name('checkout.validate');
+Route::get('/checkout/validated/{movie}', [FrontendPaymentController::class, 'qrView'])->name('checkout.validated');
+
 
 //payment route
 Route::get('/payment-message/{type}', [PageController::class, 'paymentMsg']);

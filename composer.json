@@ -20,6 +20,7 @@
         "laravel/tinker": "^2.5",
         "phpmailer/phpmailer": "^6.6",
         "rtconner/laravel-tagging": "^4.1",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "vrkansagara/lara-out-press": "^2.1"
     },
     "require-dev": {

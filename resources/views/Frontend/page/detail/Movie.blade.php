@@ -21,19 +21,20 @@
                         <h4>Available Seats</h4>
                         <b>100</b>
                     </div>
-                    
+
                     <div>
                         <h4>Price</h4>
-                        <b>Rs.{{$page->price}} / Seat</b>
-                    </div>
-                    <div>
-                        <h4>Location</h4>
-                        <b>Durbarmarg, Ktm</b>
+                        <b>Rs.{{ $page->price }} / Seat</b>
                     </div>
                 </div>
 
                 <div class="book-now">
-                    <button class="custom-btn">Book Now</button>
+                    <form action="{{ Route('checkout.payment') }}" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{$page->id}}" name="movie">
+                        <button class="custom-btn">Book Now</button>
+
+                    </form>
                 </div>
             </div>
         </div>
