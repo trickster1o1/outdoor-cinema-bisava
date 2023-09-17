@@ -30,14 +30,14 @@
                     </div>
 
                     <div>
-                        <h4>Date</h4>
+                        <h4>Time</h4>
                         <b>{{ date('M d,', strtotime($page->date)) }} {{$page->time}}</b>
                     </div>
                 </div>
 
                 <div class="book-now">
                     @if ($page->status == 'active')
-                        <form action="{{ Route('checkout.payment') }}" method="POST">
+                        <form action="{{ $available == 0 ? 'javascript:void(0)' : Route('checkout.payment') }}" method="POST">
                             @csrf
                             <input type="hidden" value="{{ $page->id }}" name="movie">
                             <div class="seat-sel">

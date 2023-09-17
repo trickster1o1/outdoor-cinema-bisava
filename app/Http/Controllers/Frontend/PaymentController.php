@@ -39,6 +39,9 @@ class PaymentController extends Controller
 
     public function validatePay($movie)
     {
+        if(isset($_GET['type'])) {
+            return redirect('/');
+        }
         $movie = Movie::where('id', $movie)->first();
         $status = 'pending';
         if ($movie->price * $_GET['seats'] != $_GET['amt']) {

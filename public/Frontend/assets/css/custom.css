@@ -288,9 +288,10 @@
     pointer-events: none;
     text-align: center;
     color: white;
-    background-color: #414042;
+    background-color: #414042   ;
 } .seat-sel span {
     background-color: red;
+    user-select: none;
     padding: 1em;
     height: 2em;
     width: 2em;
