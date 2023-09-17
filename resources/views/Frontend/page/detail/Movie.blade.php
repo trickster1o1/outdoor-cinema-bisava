@@ -31,7 +31,7 @@
 
                     <div>
                         <h4>Date</h4>
-                        <b>{{ date('M d, Y', strtotime($page->date)) }}</b>
+                        <b>{{ date('M d,', strtotime($page->date)) }} {{$page->time}}</b>
                     </div>
                 </div>
 
