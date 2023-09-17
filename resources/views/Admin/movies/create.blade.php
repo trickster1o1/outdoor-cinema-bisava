@@ -67,7 +67,14 @@
                                             <span class="invalid-feedback"> {{ $message }} </span>
                                         @enderror
                                     </div>
-
+                                    <div class="form-group col-md-6">
+                                        <label for="duration">Duration *</label>
+                                        <input type="text" class="form-control @error('duration') is-invalid @enderror"
+                                            id="duration" name="duration" placeholder="Enter Duration in minutes" value="{{ old('duration') }}">
+                                        @error('duration')
+                                            <span class=" invalid-feedback"> {{ $message }} </span>
+                                        @enderror
+                                    </div>
                                     {{-- <div class="form-group col-md-6">
                                         <label for="video">Video</label>
                                         <input type="text" class="form-control @error('video') is-invalid @enderror"

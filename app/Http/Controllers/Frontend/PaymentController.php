@@ -16,7 +16,7 @@ class PaymentController extends Controller
         if (!$movie) {
             return redirect()->back();
         }
-        $cost = $movie->price;
+        $cost = $movie->price * $req->seats;
         $pid = $movie->id . '-' . time() . '-' . $movie->id;
         echo '
             <form action="https://uat.esewa.com.np/epay/main" method="POST" id="subForm">
@@ -27,7 +27,7 @@ class PaymentController extends Controller
                 <input value="0" name="pdc" type="hidden">
                 <input value="EPAYTEST" name="scd" type="hidden">
                 <input value="' . $pid . '" name="pid" type="hidden">
-                <input value="' . url('') . '/checkout/validate/' . $movie->id . '" type="hidden" name="su">
+                <input value="' . url('') . '/checkout/validate/' . $movie->id . '?seats='.$req->seats.'" type="hidden" name="su">
                 <input value="' . url('') . '/checkout/validate/' . $movie->id . '?type=fail" type="hidden" name="fu">
                 <input value="Submit" type="submit" style="display:none;">
                 </form>
@@ -41,12 +41,13 @@ class PaymentController extends Controller
     {
         $movie = Movie::where('id', $movie)->first();
         $status = 'pending';
-        if ($movie->price != $_GET['amt']) {
+        if ($movie->price * $_GET['seats'] != $_GET['amt']) {
             $status = 'invalid';
         }
             Order::create([
                 'movie' => $movie->title,
                 'movie_id' => $movie->id,
+                'seats'=>$_GET['seats'],
                 'oid' => $_GET['oid'],
                 'amount' => $_GET['amt'],
                 'price' => $movie->price,

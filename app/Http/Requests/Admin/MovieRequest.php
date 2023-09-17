@@ -27,6 +27,7 @@ class MovieRequest extends FormRequest
             //
             'title'=>'required',
             'thumb'=>'nullable',
+            'duration'=>'nullable|numeric',
             'description'=>'nullable',
             'price'=>'required',
             'status'=>'required',

@@ -9,7 +9,9 @@
             </div>
             <small>{{ $page->status == 'active' ? 'NOW SHOWING' : 'COMING SOON' }}</small>
             <h4>{{ $page->title }}</h4>
-            <span class="movie-time">170 mins</span>
+            @if ($page->duration)
+                <span class="movie-time">{{ $page->duration }} mins</span>
+            @endif
             <div class="movie-desc">
                 {!! $page->description !!}
             </div>
@@ -19,12 +21,17 @@
                 <div>
                     <div>
                         <h4>Available Seats</h4>
-                        <b>100</b>
+                        <b>{{ $available }}</b>
                     </div>
 
                     <div>
                         <h4>Price</h4>
                         <b>Rs.{{ $page->price }} / Seat</b>
+                    </div>
+
+                    <div>
+                        <h4>Date</h4>
+                        <b>{{ date('M d, Y', strtotime($page->date)) }}</b>
                     </div>
                 </div>
 
@@ -33,6 +40,12 @@
                         <form action="{{ Route('checkout.payment') }}" method="POST">
                             @csrf
                             <input type="hidden" value="{{ $page->id }}" name="movie">
+                            <div class="seat-sel">
+                                <span onclick="updateSeat(0)">-</span>
+                                <input type="text" value="1" name="seats" id="seat">
+                                <span onclick="updateSeat(1)">+</span>
+
+                            </div>
                             <button class="custom-btn">Book Now</button>
 
                         </form>
@@ -44,4 +57,23 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        function updateSeat(code) {
+            let s = document.getElementById('seat');
+            let a = {!! json_encode($available) !!};
+            console.log(a);
+            if (code) {
+                if (parseInt(seat.value) < a) {
+                    seat.value = parseInt(seat.value) + 1;
+                }
+            } else {
+                if (parseInt(seat.value) > 1) {
+                    seat.value = parseInt(seat.value) - 1;
+                }
+            }
+        }
+    </script>
 @endsection

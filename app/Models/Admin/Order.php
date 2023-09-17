@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'oid','movie','movie_id', 'amount','price','ref_id', 'status',
+        'oid','movie','movie_id','seats', 'amount','price','ref_id', 'status',
     ];
 
     public $sortable  = ['title', 'user_id', 'price', 'status'];

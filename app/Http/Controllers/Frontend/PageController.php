@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Requests\VolunteerFormRequest;
 use App\Models\Admin\InternalLinks;
 use App\Models\Admin\Movie;
+use App\Models\Admin\Order;
 use App\Models\Admin\Volunteer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,7 @@ class PageController extends Controller
             
             $this->data['page'] = Movie::where('status','!=','deleted')->where('id',$link)->first();
             $this->data['linkData'] = InternalLinks::where('status', 'active')->where('slug', strtolower($link))->first();
+            $this->data['available'] = 100 - Order::where('status','!=','deleted')->where('movie_id',$link)->sum('seats');
             $meta = get_meta_detail($this->data['siteSetting'], $this->data['linkData']);
             return view(
                 'Frontend.page.detail.Movie',

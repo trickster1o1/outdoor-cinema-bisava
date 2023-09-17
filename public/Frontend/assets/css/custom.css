@@ -275,3 +275,30 @@
         margin-bottom: 1em;
     }
 /* ============================== */
+
+/*  ======= Seat input ========= */
+.seat-sel {
+    padding: 1em 0;
+    display: flex;
+    width: 100%;
+    gap: 1em;
+    justify-content: center;
+} .seat-sel input {
+    width: 5em;
+    pointer-events: none;
+    text-align: center;
+    color: white;
+    background-color: #414042;
+} .seat-sel span {
+    background-color: red;
+    padding: 1em;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+}
+/* ============================= */
+

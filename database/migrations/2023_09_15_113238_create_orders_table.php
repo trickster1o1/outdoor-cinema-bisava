@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();            
             $table->string('movie_id')->nullable();
             $table->string('movie')->nullable();
+            $table->string('seats')->nullable();
             $table->string('oid')->nullable();
             $table->string('amount')->nullable();
             $table->string('price')->nullable();
