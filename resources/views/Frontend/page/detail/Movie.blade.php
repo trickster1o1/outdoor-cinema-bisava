@@ -26,7 +26,7 @@
 
                     <div>
                         <h4>Price</h4>
-                        <b>Rs.{{ $page->price }} / Seat</b>
+                        <b id="pr">Rs.{{ $page->price }} / Seat</b>
                     </div>
 
                     <div>
@@ -63,7 +63,9 @@
     <script>
         function updateSeat(code) {
             let s = document.getElementById('seat');
+            let p = document.getElementById('pr');
             let a = {!! json_encode($available) !!};
+            let price = {!! json_encode($page->price) !!};
             console.log(a);
             if (code) {
                 if (parseInt(seat.value) < a) {
@@ -74,6 +76,7 @@
                     seat.value = parseInt(seat.value) - 1;
                 }
             }
+            p.innerHTML = 'Rs.'+price*parseInt(seat.value);
         }
     </script>
 @endsection
