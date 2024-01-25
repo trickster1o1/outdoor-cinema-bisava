@@ -4,7 +4,6 @@
 /public/storage
 /storage/*.key
 /vendor
-.env
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
@@ -15,5 +14,4 @@ yarn-error.log
 /.idea
 /.vscode
 /progress.txt
-/config/database.php
 composer.lock
